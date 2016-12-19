@@ -1,28 +1,15 @@
-#include <stdio.h>
-#include <opencv2/opencv.hpp>
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
 using namespace cv;
-
-int main(int argc, char** argv )
+int main( int argc, char** argv )
 {
-    if ( argc != 2 )
-    {
-        printf("usage: OpenImage.out <Image_Path>\n");
-        return -1;
-    }
-
-    Mat image;
-    image = imread( argv[1], 1 );
-
-    if ( !image.data )
-    {
-        printf("No image data \n");
-        return -1;
-    }
-    namedWindow("Open Image", WINDOW_AUTOSIZE );
-    imshow("Open Image", image);
-
-    waitKey(0);
-
-    return 0;
+Mat image = imread("Magic.jpeg");
+Mat roi = image(Rect(100, 100, 400, 300));
+Mat color(roi.size(), CV_8UC3, Scalar(0, 125, 0));
+double alpha = 0.3;
+addWeighted(color, alpha, roi, 1.0 - alpha , 0.0, roi);
+imwrite ("../greenrecmagic.jpeg", image);
+imshow("greenrecmagic",image);
+waitKey(0);
 }
