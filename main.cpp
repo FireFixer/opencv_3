@@ -7,7 +7,7 @@ int main(int argc, char** argv )
 {
     if ( argc != 2 )
     {
-        printf("usage: DisplayImage.out <Image_Path>\n");
+        printf("usage: OpenImage.out <Image_Path>\n");
         return -1;
     }
 
@@ -19,8 +19,8 @@ int main(int argc, char** argv )
         printf("No image data \n");
         return -1;
     }
-    namedWindow("Display Image", WINDOW_AUTOSIZE );
-    imshow("Display Image", image);
+    namedWindow("Open Image", WINDOW_AUTOSIZE );
+    imshow("Open Image", image);
 
     waitKey(0);
 
